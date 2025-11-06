@@ -6,23 +6,42 @@ Your answers should be execedingly short. It is most efficient to answer the que
 
 **Git**:
 1. Paste exactly the output of `git remote -v`
+origin  git@github.com:ezk1d/MorePractice.git (fetch)
+origin  git@github.com:ezk1d/MorePractice.git (push)
+
 
 **Makefile**:
 1. What target compiles `orderlogs` with sufficient debug flags
+trike
+
 2. Which target verifies your output is identical to the given reference?
+stego
 
 **Linux CLI**:
 1. At least one testcase in the testcases file fails, paste a full, single  command that runs a failing testcase:
+bin/orderlogs -f testcases/all_old
+
 
 **GDB**:
 1. When running a failing testcase, give a line where the program segfault at in its given state. Paste the line.
+61              print_age(itr->age)
+
 2. What is the call stack when the program segfaults in its given state? Paste the call stack output by GDB.
+#0  0x0000555555555880 in print_list (node=0x55555555b490) at reorder.c:61
+#1  0x000055555555532c in main ()
+
 3. After fixing this first issue, the program may segfault in a different place. If this is the case, paste that line and the corresponding callstack as well.
 
 **C**:
 1. Give a logic error that caused the program to segfault. Note, "dereferencing null" is not sufficient.
+The while was checking the wrong thing, it was checking if node was null or not even though we are 
+iterating through itr. This means it won't check if itr is null and accidently dereferences it.
+
 2. Directly following this bug, how did you resolve the error?
+Just change the condition from if node exists to if itr exists.
+
 3. After fixing this first issue, the program may have another logic error that causes a segfault. If this is the case, explain the error and how you resolved it as well.
+There was another segfault at line 21 because we didn't check if follow was null or not which caused us to dereference the pointer. We fixed this by adding an if statement that does that.
 
 ## [IMPORTANT] After you SSH into a lab machine: Note that
 - **ALL git commands must be in the command line.**
